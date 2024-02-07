@@ -1,0 +1,14 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "c:\\Users\\SOSA BHAUTIK\\Downloads\\jcalendar-1.4\\lib\\jcalendar-1.4.jar"
+        ],
+        "exclude": [
+            "c:\\jcalendar-tz-1.3.3-4.jar",
+            "lib/jcalendar-1.4.jar"
+        ]
+    }
+}
