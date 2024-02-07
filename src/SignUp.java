@@ -5,8 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class SignUp extends JFrame  implements ActionListener{
-
+ 
     JButton sn , back;
+    ButtonGroup group;
     JTextField t1 ,t2, t3 ;
     JPasswordField  pass;
     JRadioButton male, female;
@@ -69,7 +70,7 @@ public class SignUp extends JFrame  implements ActionListener{
         female.setBackground(Color.white);
         add(female);
         
-        ButtonGroup group = new ButtonGroup();
+        group = new ButtonGroup();
         group.add(male);
         group.add(female);
 
@@ -125,10 +126,18 @@ public class SignUp extends JFrame  implements ActionListener{
             obj2.cn.close();
 
             JOptionPane.showMessageDialog(null,"Sign Up Successful");
+            setVisible(false);
+            new LoginPage();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-             }
+            } catch (SQLException e) {
+                 System.out.println("User with that username already Exist !");
+                 JOptionPane.showMessageDialog(null,"User with that username already Exist !");
+                 t1.setText("");
+                 t2.setText("");
+                 t3.setText("");
+                 group.clearSelection();
+                 pass.setText("");
+            }
         }
         else if( ae.getSource() == back ){
             new LoginPage();

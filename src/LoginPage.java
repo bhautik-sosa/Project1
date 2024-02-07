@@ -1,13 +1,20 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 public class LoginPage  extends JFrame implements ActionListener{
-//
+// 
     JButton signIn , signUp , clear;
     JTextField userField ;
     JPasswordField passField;
+
+    ArrayList<String> verify = new ArrayList<>();
+    ResultSet rset = null;
+
     LoginPage(){
         getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -74,7 +81,40 @@ public class LoginPage  extends JFrame implements ActionListener{
         }
         else if( ae.getSource() == signUp ){
             new SignUp();
+        } else if( ae.getSource() == signIn ){
+
+            char[] arr = passField.getPassword();
+            String epass = new String(arr);
+            String q = "select username from  signin where password=?";
+            connection obj3 = new connection(q);
+            
+            try {
+                System.out.println("kafndf");
+                obj3.stmt.setString(1, epass);
+                rset = obj3.stmt.executeQuery();
+                while( rset.next() ) {
+
+                    String s = rset.getString("username");
+                    // verify.add(s);
+                    // System.out.println(s);
+                    if( s.equals(userField.getText()) ){
+                        JOptionPane.showMessageDialog(null , " You Got this man ! ");
+                        break;
+                    } 
+                    else {
+                        JOptionPane.showMessageDialog(null,"Invalid Username or Password");
+                    }
+                }
+                obj3.stmt.close();
+                obj3.cn.close();
+                //passNext page
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null,"Somethis went wrong !");
+            }
+
+            
         }
+
     }
     public static void main(String[] args) throws Exception  {
         new LoginPage();
