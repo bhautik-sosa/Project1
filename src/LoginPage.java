@@ -11,8 +11,7 @@ public class LoginPage  extends JFrame implements ActionListener{
     JButton signIn , signUp , clear;
     JTextField userField ;
     JPasswordField passField;
-
-    ArrayList<String> verify = new ArrayList<>();
+    
     ResultSet rset = null;
 
     LoginPage(){
@@ -95,8 +94,6 @@ public class LoginPage  extends JFrame implements ActionListener{
                 while( rset.next() ) {
 
                     String s = rset.getString("username");
-                    // verify.add(s);
-                    // System.out.println(s);
                     if( s.equals(userField.getText()) ){
                         JOptionPane.showMessageDialog(null , " You Got this man ! ");
                         break;
