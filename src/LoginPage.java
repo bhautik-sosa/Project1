@@ -7,13 +7,15 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 public class LoginPage  extends JFrame implements ActionListener{
-// 
+
     JButton signIn , signUp , clear;
     JTextField userField ;
     JPasswordField passField;
     
     ResultSet rset = null;
 
+    int flag =0;
+    static ArrayList<String> list = new ArrayList<>();
     LoginPage(){
         getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -88,20 +90,18 @@ public class LoginPage  extends JFrame implements ActionListener{
             connection obj3 = new connection(q);
             
             try {
-                System.out.println("kafndf");
+                // System.out.println("kafndf");
                 obj3.stmt.setString(1, epass);
                 rset = obj3.stmt.executeQuery();
                 while( rset.next() ) {
-
-                    String s = rset.getString("username");
-                    if( s.equals(userField.getText()) ){
+                    list.add(rset.getString("username"));
+                    if( rset.getString("username").equals(userField.getText()) ){
                         JOptionPane.showMessageDialog(null , " You Got this man ! ");
                         break;
-                    } 
-                    else {
-                        JOptionPane.showMessageDialog(null,"Invalid Username or Password");
-                    }
+                    } else flag++;
                 }
+                
+                if( flag == list.size()) JOptionPane.showMessageDialog(null , " Sign Up First ! ");
                 obj3.stmt.close();
                 obj3.cn.close();
                 //passNext page
