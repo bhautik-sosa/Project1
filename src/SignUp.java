@@ -79,11 +79,11 @@ public class SignUp extends JFrame  implements ActionListener{
         password.setBounds(100 , 190 , 100 , 20);
         add(password);
 
-         pass = new JPasswordField();
+        pass = new JPasswordField();
         pass.setBounds(210 , 192 , 180 , 17);
         add(pass);
 
-        sn = new JButton("SIGN UP");
+        sn = new JButton("NEXT");
         sn.setBounds(210 , 260 , 90 , 25);
         sn.addActionListener(this);
         sn.setBackground(Color.BLACK);
@@ -97,39 +97,54 @@ public class SignUp extends JFrame  implements ActionListener{
         back.setForeground(Color.WHITE);
         add(back);
     }
-    String q = "insert into signup values (? , ? , ? , ? , ? )";
-    String q2 = " insert into signin values (? , ?)";
+    // String q = "insert into signup values (? , ? , ? , ? , ? )";
+    // String q2 = " insert into signin values (? , ?)";
+    // String q3 = " insert into adetails (username)  values (?)";
     public void actionPerformed(ActionEvent ae ){
         if( ae.getSource() == sn){
-           connection obj = new connection(q);
-           connection obj2 = new connection(q2);
+        //    connection obj = new connection(q);
+        //    connection obj2 = new connection(q2);
+        //    connection obj3 = new connection(q3);
            try {
-            obj.stmt.setString(1, t1.getText());
-            obj.stmt.setString(2, t2.getText());
-            obj.stmt.setString(3, t3.getText());
-                if( male.isSelected()) obj.stmt.setString(4,male.getText() );
-                else obj.stmt.setString(4,female.getText());
+            // obj.stmt.setString(1, t1.getText());
+            // obj.stmt.setString(2, t2.getText());
+            // obj.stmt.setString(3, t3.getText());
+            String mf ;
+                if( male.isSelected()){
+                    mf = male.getText();
+                    // obj.stmt.setString(4,mf );
+                } 
+                else {
+                    mf = female.getText();
+                    // obj.stmt.setString(4,mf);
+                }
             char[] arr = pass.getPassword();
-            String t5 = new String(arr);
-            obj.stmt.setString(5,t5 );
-            obj.stmt.executeUpdate();
+            String passString  = new String(arr);
+            // obj.stmt.setString(5, passString);
+            // obj.stmt.executeUpdate();
             System.out.println("Inserted Successfully ! ");
-            obj.stmt.close();
-            obj.cn.close();
+            // obj.stmt.close();
+            // obj.cn.close();
 
             // For saving userName and password to signIn table -->
-            obj2.stmt.setString(1, t1.getText());
-            obj2.stmt.setString(2, t5);
-            obj2.stmt.executeUpdate();
+            // obj2.stmt.setString(1, t1.getText());
+            // obj2.stmt.setString(2, passString);
+            // obj2.stmt.executeUpdate();
             System.out.println("Data saved in signIn successfully");
-            obj2.stmt.close();
-            obj2.cn.close();
+            // obj2.stmt.close();
+            // obj2.cn.close();
 
-            JOptionPane.showMessageDialog(null,"Sign Up Successful");
+            // obj3.stmt.setString(1, t1.getText());
+            // obj3.stmt.executeUpdate();
+            // obj3.stmt.close();
+            // obj3.cn.close();
+
+            // JOptionPane.showMessageDialog(null,"Sign Up Successful");
             setVisible(false);
-            new LoginPage();
+            SignUp2 obj = new SignUp2(t1.getText() , t2.getText() , t3.getText() , mf  , passString );
+            System.out.println(t1.getText());
 
-            } catch (SQLException e) {
+            } catch (Exception e) {
                  System.out.println("User with that username already Exist !");
                  JOptionPane.showMessageDialog(null,"User with that username already Exist !");
                  t1.setText("");
@@ -143,6 +158,9 @@ public class SignUp extends JFrame  implements ActionListener{
             new LoginPage();
         }
     }
+
+
+    // If the data fields are empty then the sign up must not saved to db ! Yet to implement.
     public static void main(String[] args) {
         new SignUp();
     }

@@ -101,15 +101,17 @@ public class LoginPage  extends JFrame implements ActionListener{
                     } else flag++;
                 }
                 
-                if( flag == list.size()) JOptionPane.showMessageDialog(null , " Sign Up First ! ");
+                if( flag == list.size()) {
+                    JOptionPane.showMessageDialog(null , " Sign Up First ! ");
+                    userField.setText(" Lassi BKL");
+                    passField.setText(" Jaldi Wha se Hato");
+                }
                 obj3.stmt.close();
                 obj3.cn.close();
                 //passNext page
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null,"Somethis went wrong !");
             }
-
-            
         }
 
     }
