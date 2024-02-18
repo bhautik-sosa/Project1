@@ -47,7 +47,6 @@ public class LoginPage  extends JFrame implements ActionListener{
         passField = new JPasswordField();
         passField.setBounds(290 ,170 , 200 , 25 );
         add(passField);
-
         
         signIn = new JButton("SIGN IN");
         signIn.setBounds(290 , 220 , 80 , 25);
@@ -97,6 +96,8 @@ public class LoginPage  extends JFrame implements ActionListener{
                     list.add(rset.getString("username"));
                     if( rset.getString("username").equals(userField.getText()) ){
                         JOptionPane.showMessageDialog(null , " You Got this man ! ");
+                        new Dashboard(userField.getText());
+                        setVisible(false);
                         break;
                     } else flag++;
                 }

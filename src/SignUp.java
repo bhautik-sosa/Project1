@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
+// import java.sql.SQLException;
 
 public class SignUp extends JFrame  implements ActionListener{
  
@@ -50,8 +50,6 @@ public class SignUp extends JFrame  implements ActionListener{
         t3 = new JTextField();
         t3.setBounds(210, 132, 180 , 17);
         add(t3);
-
-        
 
         gender = new JLabel("Gender : ");
         gender.setFont(new Font("times new roman" , Font.BOLD, 15));
@@ -158,7 +156,6 @@ public class SignUp extends JFrame  implements ActionListener{
             new LoginPage();
         }
     }
-
 
     // If the data fields are empty then the sign up must not saved to db ! Yet to implement.
     public static void main(String[] args) {

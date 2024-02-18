@@ -158,6 +158,10 @@ public class SignUp2  extends  JFrame implements ActionListener {
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null ,"Enter valid details ! ");
+                tf1.setText("");
+                tf5.setText("");
+                tf3.setText("");
+                tf4.setText("");
             }
             // System.out.println(user);
 
