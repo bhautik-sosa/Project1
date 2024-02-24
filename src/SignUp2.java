@@ -27,7 +27,7 @@ public class SignUp2  extends  JFrame implements ActionListener {
         setLayout(null);
         setLayout(null);
 
-
+        System.out.println(uname);
         user = new String( uname);
         System.out.println(uname);
         fname = firstName;
